@@ -1,0 +1,30 @@
+label-encoding :
+classified values -> number
+
+1 --> df['new_col'] = df.oldCol.map({'male':0,"female":1})
+
+2 -->df['new_col'] = df.oldCol.factorize()[0]
+
+-----------------------------------------------------------------------------
+
+3: number -> classified
+
+pd.cut(    df.age , bins=[0,18,30,99]      ,       labels=['Child','Young','Old']     ) 
+
+pd.qcut( df.age , q=3 )  
+
+-----------------------------------------------------------------------------
+
+4: df.select_dtypes(include="number")
+
+5: pd.concat()
+
+-----it return range of a date------------------------------------------------------------------------
+6: pd.date_range(start,end,freq)   # example for freq -> freq="6H"   | default freq ===> "D"
+-----------------------------------------------------------------------------
+
+7:when you have a column and you want to apply a function on it ===> df["col"].map(myFunction) 
+##> when you have multi columns and you want to apply a function on it ===> df["col"].apply(myFunction)
+
+
+

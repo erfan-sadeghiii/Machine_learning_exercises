@@ -1,0 +1,56 @@
+1-having the same Random-State means having having the same spilit no matter what
+
+2-Stratify: when you want to have equal data distribution in train and test -> (avoiding overfit)
+
+ 	X_train , X_test ,y_test , y_train = train_test-split( X , y , test_size=0.5 , random_state=0 ,  stratify=y  )
+
+3- imputer = SimpleImputer(add_indicator=True)
+   imputer.fit_transform(X)
+
+
+4-Making pipeline:
+
+pipe= Pipeline([
+
+("scaler",StandardScalar()),
+("selector",VarienceThreshold()),
+
+])
+
+
+pipe.fit(X_train,y_Train)
+
+
+5-Column-transformer (choosing what to do with each col):
+
+ct = make_column_transformer(
+
+( OneHotEncoder() , ["Embark","Sex"] ) ,
+( SimpleImputer() , ["Age"] ) ,
+( "drop" , ["Index"] ) ,
+remainder="passthrought"
+
+)
+
+
+
+#############################################################################
+5 ways to select columns using Column Transformer :
+
+column name
+integer position          ---> [1,2]
+boolean mask              ---> slice(1,3)
+dtypes to exclude/include ---> make_column_selector(dtype_include=object)
+slice 		     ---> slice(1,3)
+#############################################################################
+
+
+6-Confusion matrix with ScikitLearn:
+
+disp = plot_confusion_matrix(clf_X_test,y_test,cmap='Blues',values_format="d")
+
+7- when your datas are ordinal use OrdinalEncoder()
+
+#####=> LabelEncoding must be your last option for encoding categorical datas
+
+8
